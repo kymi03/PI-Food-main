@@ -1,0 +1,60 @@
+import { useParams } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import {  recipeDetail } from '../../Redux/actions';
+import { useLoading } from '../../hooks/hooks';
+
+
+export default function Detail(props){ 
+
+    const {id} = useParams();
+
+    const recipes = useSelector((state) => state.recipeDetail);
+    const dispatch = useDispatch()
+
+    const loading = useLoading(dispatch,recipeDetail, id);
+
+    return(
+        <div>
+            <div className='invisible'></div>
+            {loading ? (
+                <span></span>
+            ) : (
+                <div>
+                    <h1>{recipes.title}</h1>
+                    <h3>ID: {recipes.id}</h3>
+                    <img src={recipes.image} alt="" />
+                    <h3>Health Score: {recipes.healthScore}</h3>
+                    {recipes.diets?.map((diet) => {
+                        return ( 
+                            <div>
+                                <span>{diet.name}</span>
+                            </div>
+                        );
+                    })}
+
+                    <div>
+                        <h2>Info: </h2>
+                        <p dangerouslySetInnerHTML={{
+                            __html: recipes.summary,
+                        }}
+                        ></p>
+                    </div>
+
+                    <h2>
+                        Step By Step Preparation: 
+                    </h2>
+                    {recipes.steps.map((step, index) => {
+                        return (
+                            <div key={index}>
+                                <h3> Step: {step.number}</h3>
+                                <ul>
+                                    <p>{step.step}</p>
+                                </ul>
+                            </div>
+                        );
+                    })}
+                </div>
+            )}
+        </div>
+    );
+}; 

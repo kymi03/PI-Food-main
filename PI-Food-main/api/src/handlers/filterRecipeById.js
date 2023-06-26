@@ -1,3 +1,5 @@
+const { getRecipeDetail } = require('../controllers/recipes/index')
+
 const filterRecipeById = async (req, res) => {
     try {
         //Recibe el id que viene por params

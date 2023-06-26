@@ -19,7 +19,7 @@ const getRecipeDetail = async (id) => {
     } else {
         try {
             //en caso contrario debe hacer request de la API
-            const response = await axios.get( `https://api.spoonacular.com/recipes/${id}/information?apiKey=${API_KEY}&addRecipeInformation=true` );
+            const response = await axios.get( `http://localhost:8080/recipes/${id}/information?apiKey=${API_KEY}&addRecipeInformation=true` );
 
             const {
                 title,

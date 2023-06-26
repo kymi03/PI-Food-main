@@ -1,0 +1,18 @@
+.container {
+	padding: 10px;
+	display: flex;
+	justify-content: space-around;
+	flex-flow: wrap;
+	align-items: center;
+	width: 100vw;
+	height: auto;
+	background-color: var(--verde-azulado-acento);
+	position: fixed;
+	margin-bottom: 200px;
+}
+
+@media (max-width: 480px) {
+	.container {
+		flex-direction: column;
+	}
+}
