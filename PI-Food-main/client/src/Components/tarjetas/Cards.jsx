@@ -59,7 +59,7 @@ export default function Cards(props) {
                     );
                 })}
 
-                <input type="text"
+                <input type="button"
                     disabled={currentPage >= totalPages}
                     onClick={nextPage}
                     value='Next'

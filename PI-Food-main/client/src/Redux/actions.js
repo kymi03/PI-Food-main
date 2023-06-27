@@ -30,7 +30,7 @@ export const getRecipes = () => {
 //Obtener las recetas por nombre 
 export const getRecipeName = (name) => {
     return async (dispatch) => {
-        const response = await axios.get(`/recipes?name=${name}`);
+        const response = await axios.get(`${URL}/recipes?name=${name}`);
 
         return dispatch({
             type: GET_RECIPE_NAME,

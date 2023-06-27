@@ -14,7 +14,7 @@ const filterRecipeByName = async (req, res) => {
         }
 
         let filtradas = response.filter((resp) => 
-            resp.tittle.toLowerCase().includes(name.toLowerCase())
+            resp.title.toLowerCase().includes(name.toLowerCase())
         );
 
         filtradas.length

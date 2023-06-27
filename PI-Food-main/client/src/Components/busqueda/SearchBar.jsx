@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import * as actions from '../../Redux/actions';
+import { getRecipeName } from '../../Redux/actions';
 import { useState } from "react";
 
 export default function SearchBar(props) {
@@ -7,14 +7,21 @@ export default function SearchBar(props) {
     const [searchValue, setSearchValue] = useState('');
 
     const handleSearch = () => {
-        dispatch(actions.getRecipeName(searchValue));
+        dispatch(getRecipeName(searchValue));
     };
 
     const handleKeyDown = (event) => {
         if (event.keyCode === 13) {
-            dispatch(actions.getRecipeName(searchValue));
+            dispatch(getRecipeName(searchValue));
         }
     };
+    const handleEnter = (event) => {
+        if (event.key === 'Enter') {
+            dispatch(getRecipeName(searchValue))
+        }
+    };
+
+
 
     return (
         <div>
@@ -24,8 +31,11 @@ export default function SearchBar(props) {
                 value={searchValue}
                 onChange={(event) => setSearchValue(event.target.value)}
                 onKeyDown={handleKeyDown}
+                onKeyUp={handleEnter}
             />
-            <button onClick={handleSearch}>Search</button>
+            <button onClick={handleSearch}>
+                Search
+            </button>
         </div>
     );
 };

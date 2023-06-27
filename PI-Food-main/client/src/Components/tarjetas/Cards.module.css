@@ -30,6 +30,7 @@
 
 .pagination {
 	display: flex;
+	margin: top;
 }
 
 .pagination p {
