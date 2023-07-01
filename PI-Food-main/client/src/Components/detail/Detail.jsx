@@ -1,5 +1,5 @@
 import { Link, useParams } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import {  useSelector } from 'react-redux';
 import { recipeDetail } from '../../Redux/actions';
 import { useLoading } from '../../hooks/hooks';
 import styles from './Detail.module.css';
@@ -10,9 +10,8 @@ export default function Detail(props) {
     const { id } = useParams();
 
     const recipes = useSelector((state) => state.recipeDetail);
-    const dispatch = useDispatch()
 
-    const loading = useLoading(dispatch, recipeDetail, id);
+    const loading = useLoading( recipeDetail, id);
 
     return (
         <div>
@@ -48,15 +47,15 @@ export default function Detail(props) {
                         Step By Step Preparation:
                     </h2>
                     {recipes.steps.map((step, index) => {
-                        return (
-                            <div key={index} className={styles.stepByStep}>
-                                <h3> Step: {step.number}</h3>
-                                <ul>
-                                    <p>{step.step}</p>
-                                </ul>
-                            </div>
-                        );
-                    })}
+						return (
+							<div key={index} className={styles.stepByStep}>
+								<h3>Step {step.number}</h3>
+								<ul>
+									<p>{step.step}</p>
+								</ul>
+							</div>
+						);
+					})}
                 </div>
             )}
         </div>

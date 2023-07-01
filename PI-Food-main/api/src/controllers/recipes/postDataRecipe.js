@@ -10,6 +10,7 @@ const postDataRecipe = async (recipeObj) => {
         healthScore,
         steps,
         image, 
+        diets,
     });
 
     //obtenemos los tipos de dietas

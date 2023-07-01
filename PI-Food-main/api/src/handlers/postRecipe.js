@@ -1,10 +1,10 @@
-const { postDataRecipe } = require('../controllers/recipes/postDataRecipe');
+const  postDataRecipe  = require('../controllers/recipes/postDataRecipe');
 
 const postRecipe = async (req, res) => {
 	try {
 		const { title, image, summary, healthScore, steps, diets } = req.body;
 		if (!(title && image && summary && healthScore && steps && diets)) {
-			res.status(400).send('Faltan datos para poder crear la receta');
+			return res.status(400).send('Faltan datos para poder crear la receta');
 		}
 
 		const recipeObj = {

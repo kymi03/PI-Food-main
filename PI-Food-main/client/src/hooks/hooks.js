@@ -5,21 +5,22 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 
-export const useLoading = (dispatch, action, actionParam = null) => {
-    const [loading, setLoading] = useState(true);
+export const useLoading = (action, actionParam = null) => {
+	const [loading, setLoading] = useState(true);
+	const dispatch = useDispatch();
 
-    useEffect(() => {
-        setLoading(true);
+	useEffect(() => {
+		setLoading(true);
 
-        const fetch = async () => {
-            await dispatch(action(actionParam));
-            setLoading(false);
-        };
+		const fetch = async () => {
+			await dispatch(action(actionParam));
+			setLoading(false);
+		};
 
-        fetch();
-    }, [action, actionParam, dispatch]);
+		fetch();
+	}, [action,actionParam, dispatch]);
 
-    return loading;
+	return loading;
 };
 
 export const useLoadOnGlblState = (globalState, action, actionParam = null) => {
@@ -32,7 +33,7 @@ export const useLoadOnGlblState = (globalState, action, actionParam = null) => {
 	const dispatch = useDispatch();
 	useEffect(() => {
 		dispatch(action(actionParam));
-	}, [action, actionParam, dispatch]);
+	}, []);
 
 	return glblState;
 };

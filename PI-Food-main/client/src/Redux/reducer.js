@@ -19,6 +19,7 @@ const initialState = {
     darkMode: false,
 };
 
+
 const reducer = (state = initialState, action) => {
     switch (action.type) {
         case GET_RECIPES:

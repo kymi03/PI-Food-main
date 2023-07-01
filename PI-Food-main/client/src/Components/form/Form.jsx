@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { validateForm } from '../../functions';
 import { useDispatch, useSelector } from 'react-redux';
 import { addRecipe } from '../../Redux/actions';
+import styles from './Form.module.css';
 
 export default function Form(props) {
 
@@ -84,7 +85,7 @@ export default function Form(props) {
                 ...form,
                 steps: [
                     ...form.steps,
-                    { number: form.numSteps + 1, steps: stepDescription },
+                    { number: form.numSteps + 1, step: stepDescription },
                 ],
                 numSteps: form.numSteps + 1,
             });
@@ -105,10 +106,8 @@ export default function Form(props) {
     const changeHandler = (event) => {
         const value = event.target.value;
 
-        setForm({
-            ...form,
-            diets: [...form.diets, value]
-        });
+
+        setForm({ ...form, diets: [...form.diets, value] });
     };
 
     return (
@@ -118,9 +117,9 @@ export default function Form(props) {
                 <button>Home</button>
             </Link>
             <h1>CREATE NEW RECIPE</h1>
-            <div>
+            <div className={`${styles.frm}`}>
                 <form onSubmit={handleSubmit}>
-                    <div>
+                    <div className={`${styles.inpt}`}>
                         <label htmlFor="title">Recipe Name</label>
                         <input type="text"
                             id='title'
@@ -131,7 +130,7 @@ export default function Form(props) {
                         <span>{errors.title}</span>
                     </div>
 
-                    <div>
+                    <div className={`${styles.inpt}`}>
                         <label htmlFor="image">Image Link</label>
                         <input type="text"
                             name="image"
@@ -142,7 +141,7 @@ export default function Form(props) {
                         <span>{errors.image}</span>
                     </div>
 
-                    <div>
+                    <div className={`${styles.inpt}`}>
                         <label htmlFor='summary'>Recipe Summary: </label>
 
                         <textarea
@@ -156,7 +155,7 @@ export default function Form(props) {
                         <span>{errors.summary}</span>
                     </div>
 
-                    <div>
+                    <div className={`${styles.inpt}`}>
                         <label htmlFor='healthScore'>Health Score:</label>
 
                         <input
@@ -169,7 +168,7 @@ export default function Form(props) {
                         <span>{errors.healthScore}</span>
                     </div>
 
-                    <div>
+                    <div className={`${styles.inpt}`}>
                         <label htmlFor='steps'>Step By Step</label>
 
                         <textarea
@@ -183,17 +182,19 @@ export default function Form(props) {
                         <div>
                             <button
                                 onClick={handleStep}
+                                className={styles.btnx}
                             >
                                 Add
                             </button>
                             <button
                                 onClick={handleDelete}
+                                className={styles.btnx}
                             >
                                 Clean
                             </button>
                         </div>
                         <ul>
-                            {form.steps.map((step, index) => {
+                            {form.steps?.map((step, index) => {
                                 return (
                                     <p key={index}>
                                         <strong>Step {step.number}:</strong>{' '}
@@ -204,7 +205,7 @@ export default function Form(props) {
                         </ul>
                     </div>
 
-                    <div>
+                    <div className={`${styles.inpt}`}>
                         <label htmlFor='diets'>Diet Type:</label>
 
                         <select
@@ -222,7 +223,7 @@ export default function Form(props) {
                         </select>
                     </div>
 
-                    <div>
+                    <div className={`${styles.inpt}`}>
                         <button
                             disabled={
                                 form.title &&

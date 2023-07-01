@@ -84,7 +84,7 @@ export const getDiets = () => {
 
 export const addRecipe = (form) => {
     return async (dispatch) => {
-        const response = await axios.post(`/recipes`, form);
+        const response = await axios.post(`${URL}/recipes`, form);
         return dispatch({
             type: ADD_RECIPE,
             payload: response.data,
