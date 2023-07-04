@@ -10,7 +10,7 @@
 	-webkit-box-shadow: 21px 13px 46px -5px rgba(0, 0, 0, 0.47);
 	-moz-box-shadow: 21px 13px 46px -5px rgba(0, 0, 0, 0.47);
 	box-shadow: 21px 13px 46px -5px rgba(0, 0, 0, 0.47);
-	color: var(--claro-gris-oscuro);
+	color: var(--negro-letra-card);
 }
 
 .inpt {
