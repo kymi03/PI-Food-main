@@ -23,7 +23,7 @@ const port = process.env.PORT || 3001;
 
 // Syncing all the models at once.
 conn.sync({ force: true }).then(() => {
-  server.listen(port, () => {
+  server.listen(port, "0.0.0.0", () => {
     console.log('%s listening at 3001'); // eslint-disable-line no-console
   });
 });
