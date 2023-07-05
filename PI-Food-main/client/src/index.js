@@ -6,8 +6,10 @@ import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import store from './Redux/store';
+import axios from "axios";
 
-
+axios.defaults.baseURL="https://pi-food-back.adaptable.app"
+// axios.defaults.baseURL='http://localhost:3001'
 
 ReactDOM.render(
 	<React.StrictMode>
