@@ -6,7 +6,7 @@ const axios = require('axios');
 const getAllApiRecipes = async () => {
     try {
         //esta peticion me trae todas las recetas de la API 
-        const response = await axios.get( `http://localhost:8080/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=100` );
+        const response = await axios.get( `/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=100` );
 
         const recipeData = response.data.results.map((item) => {
             const {title, image, summary, healthScore, diets, id} = item;

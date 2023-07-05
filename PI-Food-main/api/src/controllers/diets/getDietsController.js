@@ -19,7 +19,7 @@ const getDietsController = async () => {
 
     //de lo contrario que haga el llamado a la API
 
-    const apiDiets = await axios.get(`http://localhost:8080/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=100`);
+    const apiDiets = await axios.get(`/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=100`);
 
     const dietsArray = apiDiets.data.results
         .map((recipe)=> recipe.diets)
