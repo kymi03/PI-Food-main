@@ -5,15 +5,17 @@
 	align-items: center;
 	justify-content: center;
 	background-size: cover;
-	background-image: url('../../images/fondo-4.png');
+	background-color: #541212;
 
 }
 
 .container h1 {
-	color: #260451;
+	text-shadow: 1px 1px 2px black, 0 0 1em rgb(255, 255, 255), 0 0 0.2em rgb(254, 254, 255);
+	color: rgb(77, 0, 0);
 }
 .container h2 {
-	color: #260451;
+	text-shadow: 1px 1px 2px black, 0 0 1em rgb(255, 255, 255), 0 0 0.2em rgb(254, 254, 255);
+	color: rgb(77, 0, 0);
 }
 
 .txt {
