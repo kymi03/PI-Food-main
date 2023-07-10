@@ -1,6 +1,6 @@
 import Card from '../tarjeta/Card';
 import { useDispatch, useSelector } from 'react-redux';
-import { getRecipes } from '../../Redux/actions';
+import { getRecipes, setCurrentPage } from '../../Redux/actions';
 import { useLoading } from '../../hooks/hooks';
 import { useState } from 'react';
 import style from './Cards.module.css';
@@ -10,7 +10,10 @@ export default function Cards(props) {
     const allRecipes = useSelector((state) => state.recipes);
 
     // logica para crear e paginado
-    const [currentPage, setCurrentPage] = useState(1);
+    // const [currentPage, setCurrentPage] = useState(1);
+
+    const currentPage = useSelector((state)=>state.currentPage)
+
     const itemsPerPage = 9;
     const indexOfLastItem = currentPage * itemsPerPage;
     const indexOfFirstItem = indexOfLastItem - itemsPerPage;
@@ -28,15 +31,15 @@ export default function Cards(props) {
     const loading = useLoading(dispatch,getRecipes);
 
     const nextPage = () => {
-        setCurrentPage(currentPage + 1);
+        dispatch(setCurrentPage('aum'));
     };
 
     const prevPage = () => {
-        setCurrentPage(currentPage - 1);
+        dispatch(setCurrentPage('dim'));
     };
 
     const handlePageChange = (page) => {
-        setCurrentPage(page);
+        dispatch(setCurrentPage(page));
     };
 
     return (

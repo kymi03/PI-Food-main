@@ -9,6 +9,7 @@ import {
     ADD_RECIPE,
     FILTER_BY_ORIGIN,
     TOGGLE_DARK_MODE,
+    PAGINATION,
 } from './actionTypes';
 import axios from 'axios';
 
@@ -21,7 +22,7 @@ export const getRecipes = () => {
         const response = await axios.get(`/recipes`);
 
         return dispatch({
-            type:GET_RECIPES,
+            type: GET_RECIPES,
             payload: response.data,
         });
     };
@@ -30,12 +31,17 @@ export const getRecipes = () => {
 //Obtener las recetas por nombre 
 export const getRecipeName = (name) => {
     return async (dispatch) => {
-        const response = await axios.get(`/recipes?name=${name}`);
+        try {
+            const response = await axios.get(`/recipes?name=${name}`);
+    
+            return dispatch({
+                type: GET_RECIPE_NAME,
+                payload: response.data,
+            });
 
-        return dispatch({
-            type: GET_RECIPE_NAME,
-            payload: response.data,
-        });
+        }catch(error){
+            alert('No existe esa receta')
+        }
     };
 };
 
@@ -49,7 +55,7 @@ export const recipeDetail = (detailId) => {
     };
 };
 
-export const filterByDiet = (diet) =>{
+export const filterByDiet = (diet) => {
     return async (dispatch) => {
         return dispatch({
             type: FILTER_BY_DIET,
@@ -59,10 +65,10 @@ export const filterByDiet = (diet) =>{
 };
 
 export const orderByName = (order) => {
-	return {
-		type: ORDER_BY_NAME,
-		payload: order,
-	};
+    return {
+        type: ORDER_BY_NAME,
+        payload: order,
+    };
 };
 
 export const orderByHealthScore = (order) => {
@@ -73,22 +79,29 @@ export const orderByHealthScore = (order) => {
 };
 
 export const getDiets = () => {
-	return async (dispatch) => {
-		const response = await axios.get(`/diets`);
-		return dispatch({
-			type: GET_DIETS,
-			payload: response.data,
-		});
-	};
+    return async (dispatch) => {
+        const response = await axios.get(`/diets`);
+        return dispatch({
+            type: GET_DIETS,
+            payload: response.data,
+        });
+    };
 };
 
 export const addRecipe = (form) => {
     return async (dispatch) => {
-        const response = await axios.post(`/recipes`, form);
-        return dispatch({
-            type: ADD_RECIPE,
-            payload: response.data,
-        });
+        try {
+            const response = await axios.post(`/recipes`, form);
+
+            alert('You Recipe Has Been Created Successfully');
+
+            return dispatch({
+                type: ADD_RECIPE,
+                payload: response.data,
+            });
+        } catch (error) {
+          alert('the recipe could not be created')
+        }
     };
 };
 
@@ -104,5 +117,12 @@ export const filterByOrigin = (origin) => {
 export const toggleDarkMode = () => {
     return {
         type: TOGGLE_DARK_MODE,
+    }
+}
+
+export const setCurrentPage = (page) => {
+    return {
+        type: PAGINATION,
+        payload: page,
     }
 }

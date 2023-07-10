@@ -7,8 +7,8 @@ const axios = require('axios');
 
 require('./db.js');
 
-axios.defaults.baseURL ="https://api.spoonacular.com"
-// axios.defaults.baseURL ="http://localhost:8080"
+// axios.defaults.baseURL ="https://api.spoonacular.com"
+axios.defaults.baseURL ="http://localhost:8080"
 
 const server = express();
 

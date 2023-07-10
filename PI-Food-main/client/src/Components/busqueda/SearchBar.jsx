@@ -1,25 +1,37 @@
 import { useDispatch } from "react-redux";
-import { getRecipeName } from '../../Redux/actions';
+import { getRecipeName, setCurrentPage } from '../../Redux/actions';
 import { useState } from "react";
 
 export default function SearchBar(props) {
     const dispatch = useDispatch();
+    const regex = /^[a-zA-Z0-9\s]*$/;
     const [searchValue, setSearchValue] = useState('');
+    const [errors, setErrors] = useState(false);
 
     const handleSearch = () => {
         dispatch(getRecipeName(searchValue));
+        dispatch(setCurrentPage(1))
     };
 
     const handleKeyDown = (event) => {
         if (event.keyCode === 13) {
             dispatch(getRecipeName(searchValue));
+            dispatch(setCurrentPage(1))
         }
     };
-    const handleEnter = (event) => {
-        if (event.key === 'Enter') {
-            dispatch(getRecipeName(searchValue))
+
+    const handleChange = (event) => {
+        setSearchValue(event.target.value)
+
+        if(regex.test(searchValue)) {
+            setErrors(true)
+        }else{
+            setErrors(false)
+
         }
+
     };
+   
 
 
 
@@ -29,11 +41,13 @@ export default function SearchBar(props) {
                 type='search'
                 placeholder='Search recipe by name'
                 value={searchValue}
-                onChange={(event) => setSearchValue(event.target.value)}
-                onKeyDown={handleKeyDown}
-                onKeyUp={handleEnter}
+                onChange={handleChange}
+                onKeyDown={regex.test(searchValue) ? handleKeyDown: null}
             />
-            <button onClick={handleSearch}>
+            <button onClick={handleSearch}
+                disabled={
+                    !regex.test(searchValue) ? true:false
+                }>
                 Search
             </button>
         </div>

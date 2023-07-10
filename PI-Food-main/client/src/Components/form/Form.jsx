@@ -57,11 +57,8 @@ export default function Form(props) {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        dispatch(addRecipe(form)).then(() => {
-            navigate('/home');
-        });
+        dispatch(addRecipe(form));
 
-        alert('You Recipe Has Been Created Successfully');
 
         setForm({
             title: '',

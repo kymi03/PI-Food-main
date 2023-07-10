@@ -9,6 +9,7 @@ import {
     ORDER_BY_NAME,
     ORDER_BY_HEALTHSCORE,
     TOGGLE_DARK_MODE,
+    PAGINATION,
 } from './actionTypes';
 
 const initialState = {
@@ -16,6 +17,7 @@ const initialState = {
     recipeDetail: [],
     filteredRecipes: [],
     allDiets: [],
+    currentPage: 1,
     darkMode: false,
 };
 
@@ -120,7 +122,7 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 recipes: [...state.recipes, action.payload],
-                filteredRecipes: [...state.filteredRecipes, action.payaload],
+                filteredRecipes: [...state.filteredRecipes, action.payload],
             };
 
         case FILTER_BY_ORIGIN:
@@ -149,6 +151,27 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 darkMode: !state.darkMode,
             };
+        
+        case PAGINATION:
+
+            const pages = {};
+            if(action.payload === 'aum') {
+                return {
+                    ...state,
+                    currentPage: state.currentPage + 1,
+                }
+            } else if (action.payload === 'dim') {
+                return {
+                    ...state,
+                    currentPage: state.currentPage - 1,
+                }
+            } else {
+                return{
+                    ...state,
+                    currentPage: action.payload
+                }
+            }
+        
 
         default:
             return {

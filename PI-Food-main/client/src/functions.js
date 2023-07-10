@@ -1,7 +1,7 @@
 const notBlankText = 'This Field Can Not Be Blank';
 const notSpecialChars = 'This Field Can Not Contain Special Characters';
 const specialCharsRegex = /[!@#$%^&*()_+\-=[\]{}'\\|<>/]/;
-const regexUrl = /^https?:\/\/[\\-]+(\.[\\-]+)+[/#?]?.*$/;
+const regexUrl = /\b((?:https?|ftp):\/\/[^\s/$.?#].[^\s]*|data:[^\s/$.?#].[^\s]*)\b/;
 const numberRegex = /^[0-9]+$/;
 
 // Funcion que valida un input que debe contener una URL

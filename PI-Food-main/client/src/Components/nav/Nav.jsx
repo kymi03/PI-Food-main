@@ -7,6 +7,7 @@ import {
     orderByHealthScore,
     orderByName,
     toggleDarkMode,
+    setCurrentPage,
 } from '../../Redux/actions';
 import { useLoadOnGlblState } from '../../hooks/hooks';
 import { Link } from 'react-router-dom';
@@ -22,6 +23,7 @@ export default function Nav(props) {
 
     const handleFilter = (event) => {
         dispatch(filterByDiet(event.target.value));
+        dispatch(setCurrentPage(1))
     };
 
     const handleOrder = (event) => {
@@ -34,6 +36,7 @@ export default function Nav(props) {
 
     const handleFilterOrigin = (event) => {
         dispatch(filterByOrigin(event.target.value));
+        dispatch(setCurrentPage(1))
     };
 
     const handleClick = (event) => {

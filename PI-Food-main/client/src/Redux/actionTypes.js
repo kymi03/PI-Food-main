@@ -8,3 +8,4 @@ export const GET_DIETS = 'GET_DIETS';
 export const ADD_RECIPE = 'ADD_RECIPE';
 export const FILTER_BY_ORIGIN = 'FILTER_BY_ORIGIN';
 export const TOGGLE_DARK_MODE = 'TOGGLE_DARK_MODE';
+export const PAGINATION = 'PAGINATION';
